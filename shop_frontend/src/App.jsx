@@ -1,35 +1,43 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from "react";
+import Header from "./Componants/header";
+import HeroBanner from "./Componants/heroBanner";
+import CategoryCard from "./Componants/categoryCard"; // ← NOUVELLE LIGNE
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div>
+      <Header />
+      <HeroBanner />
+
+      {/* Section pour tester les catégories */}
+      <div className="max-w-7xl mx-auto px-4 py-12">
+        <h2 className="text-3xl font-bold mb-8">Achetez par catégorie</h2>
+
+        {/* Grille de 4 colonnes */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          {/* Catégorie 1 : Alimentation */}
+          <CategoryCard
+            title="Alimentation"
+            icon="🍖"
+            bgColor="bg-purple-400"
+          />
+
+          {/* Catégorie 2 : Jouets */}
+          <CategoryCard title="Jouets" icon="🎾" bgColor="bg-purple-400" />
+
+          {/* Catégorie 3 : Accessoires */}
+          <CategoryCard title="Accessoires" icon="🦴" bgColor="bg-purple-400" />
+
+          {/* Catégorie 4 : Hygiène */}
+          <CategoryCard
+            title="Hygiène et soins"
+            icon="🧴"
+            bgColor="bg-purple-400"
+          />
+        </div>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    </div>
+  );
 }
 
-export default App
+export default App;
