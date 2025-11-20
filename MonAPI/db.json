@@ -1,0 +1,142 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "firstname": "Jenna",
+      "lastname": "Amor",
+      "email": "jenna@example.com",
+      "password": "hashedpassword123"
+    },
+    {
+      "id": 2,
+      "firstname": "Nathan",
+      "lastname": "Durand",
+      "email": "nathan@example.com",
+      "password": "password456"
+    }
+  ],
+
+  "address": [
+    {
+      "id": 1,
+      "user_id": 1,
+      "street": "10 Rue des Fleurs",
+      "city": "Lyon",
+      "postal_code": "69003",
+      "country": "France"
+    },
+    {
+      "id": 2,
+      "user_id": 2,
+      "street": "25 Avenue Victor Hugo",
+      "city": "Paris",
+      "postal_code": "75016",
+      "country": "France"
+    }
+  ],
+
+  "category": [
+    { "id": 1, "name": "Électronique" },
+    { "id": 2, "name": "Maison" },
+    { "id": 3, "name": "Jeux Vidéo" }
+  ],
+
+  "product": [
+    {
+      "id": 1,
+      "name": "Croquette premium",
+      "description": "Croquette pour chien de haute qualité",
+      "image_url": "https://www.direct-vet.fr/2457/2220.jpg",
+      "price": 59.99,
+      "category_id": 1,
+      "stock": 42
+    },
+    {
+      "id": 2,
+      "name": "Croquette chat",
+      "description": "Croquette chat premium trop bon",
+      "image_url": "https://media.cdnws.com/_i/311030/11582/1032/82/16.jpeg",
+      "price": 24.9,
+      "category_id": 2,
+      "stock": 120
+    },
+    {
+      "id": 3,
+      "name": "Patée chat",
+      "description": "Patée chat pour les chats",
+      "image_url": "https://img.20mn.fr/6mGa-OxmQV2AxaKMdqIJuCk/1444x920_pour-vous-aider-a-choisir-voici-une-selection-des-meilleurs",
+      "price": 69.99,
+      "category_id": 3,
+      "stock": 15
+    }
+  ],
+
+  "orders": [
+    {
+      "id": 1,
+      "user_id": 1,
+      "address_id": 1,
+      "total_price": 129.98,
+      "status": "paid",
+      "order_date": "2025-01-15"
+    },
+    {
+      "id": 2,
+      "user_id": 2,
+      "address_id": 2,
+      "total_price": 69.99,
+      "status": "pending",
+      "order_date": "2025-01-17"
+    }
+  ],
+
+  "order_item": [
+    {
+      "id": 1,
+      "order_id": 1,
+      "product_id": 1,
+      "quantity": 2,
+      "price": 59.99
+    },
+    {
+      "id": 2,
+      "order_id": 2,
+      "product_id": 3,
+      "quantity": 1,
+      "price": 69.99
+    }
+  ],
+
+  "flyway_schema_history": [
+    {
+      "installed_rank": 1,
+      "version": "1",
+      "description": "create users table"
+    },
+    {
+      "installed_rank": 2,
+      "version": "2",
+      "description": "create category table"
+    },
+    {
+      "installed_rank": 3,
+      "version": "3",
+      "description": "create product table"
+    },
+    {
+      "installed_rank": 4,
+      "version": "4",
+      "description": "create address table"
+    },
+    {
+      "installed_rank": 5,
+      "version": "5",
+      "description": "create orders table"
+    },
+    {
+      "installed_rank": 6,
+      "version": "6",
+      "description": "create order item table"
+    }
+  ]
+}
