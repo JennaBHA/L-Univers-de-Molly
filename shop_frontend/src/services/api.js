@@ -50,9 +50,3 @@ if (error.response) {
 }
 
 export default api;
-
-
-
-
-
-
