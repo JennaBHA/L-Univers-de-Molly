@@ -1,28 +1,129 @@
 import React from "react";
+<<<<<<< HEAD
 import Header from "./Components/header";
 import HeroBanner from "./Components/heroBanner";
 import CategoryCard from "./Components/categoryCard";
 import ProductList from "./Components/productList";
+=======
+import Header from "./Componants/header";
+import HeroBanner from "./Componants/heroBanner";
+import CategoryCard from "./Componants/categoryCard";
+import ProductCard from "./Componants/productCard";
+import Footer from "./Componants/footer"; // ← ICI EN HAUT !
+>>>>>>> b1757a9b3883f66e9628fcdec5b2c7e2570c321c
 
 function App() {
+  // DONNÉES DE TEST - Produits fictifs
+  const products = [
+    {
+      id: 1,
+      name: "Croquette Premium pour chiens - Poulet & Riz 15kg",
+      price: "39,99€",
+      rating: 5,
+      reviews: 2456,
+      image:
+        "https://images.unsplash.com/photo-1589924691995-400dc9ecc119?w=400",
+      isPremium: true,
+      discount: null,
+    },
+    {
+      id: 2,
+      name: "Croquette Premium pour chiens - Poulet & Riz 15kg",
+      price: "39,99€",
+      rating: 5,
+      reviews: 2456,
+      image:
+        "https://images.unsplash.com/photo-1591769225440-811ad7d6eab3?w=400",
+      isPremium: false,
+      discount: 24,
+    },
+    {
+      id: 3,
+      name: "Croquette Premium pour chiens - Poulet & Riz 15kg",
+      price: "39,99€",
+      rating: 4,
+      reviews: 2456,
+      image:
+        "https://images.unsplash.com/photo-1589924691995-400dc9ecc119?w=400",
+      isPremium: true,
+      discount: null,
+    },
+    {
+      id: 4,
+      name: "Croquette Premium pour chiens - Poulet & Riz 15kg",
+      price: "39,99€",
+      rating: 5,
+      reviews: 2456,
+      image:
+        "https://images.unsplash.com/photo-1591769225440-811ad7d6eab3?w=400",
+      isPremium: false,
+      discount: 24,
+    },
+    {
+      id: 5,
+      name: "Croquette Premium pour chiens - Poulet & Riz 15kg",
+      price: "39,99€",
+      rating: 5,
+      reviews: 2456,
+      image:
+        "https://images.unsplash.com/photo-1589924691995-400dc9ecc119?w=400",
+      isPremium: true,
+      discount: null,
+    },
+    {
+      id: 6,
+      name: "Croquette Premium pour chiens - Poulet & Riz 15kg",
+      price: "39,99€",
+      rating: 4,
+      reviews: 2456,
+      image:
+        "https://images.unsplash.com/photo-1591769225440-811ad7d6eab3?w=400",
+      isPremium: false,
+      discount: 24,
+    },
+  ];
+
   return (
-    <div>
+    <div className="min-h-screen bg-gray-50">
       <Header />
       <HeroBanner />
 
-      {/* Section pour tester les catégories */}
-      <div className="max-w-7xl mx-auto px-4 py-12">
-        <h2 className="text-3xl font-bold mb-8">Achetez par catégorie</h2>
+      <main className="max-w-7xl mx-auto px-4 py-12">
+        {/* SECTION CATÉGORIES */}
+        <section className="mb-16">
+          <h2 className="text-3xl font-bold mb-8">Achetez par catégorie</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            <CategoryCard
+              title="Alimentation"
+              icon="🍖"
+              bgColor="bg-purple-400"
+            />
+            <CategoryCard title="Jouets" icon="🎾" bgColor="bg-purple-400" />
+            <CategoryCard
+              title="Accessoires"
+              icon="🦴"
+              bgColor="bg-purple-400"
+            />
+            <CategoryCard
+              title="Hygiène et soins"
+              icon="🧴"
+              bgColor="bg-purple-400"
+            />
+          </div>
+        </section>
 
-        {/* Grille de 4 colonnes */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {/* Catégorie 1 : Alimentation */}
-          <CategoryCard
-            title="Alimentation"
-            icon="🍖"
-            bgColor="bg-purple-400"
-          />
+        {/* SECTION PRODUITS */}
+        <section>
+          <h2 className="text-3xl font-bold mb-8">Meilleures ventes</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
+            {products.map((product) => (
+              <ProductCard key={product.id} product={product} />
+            ))}
+          </div>
+        </section>
+      </main>
 
+<<<<<<< HEAD
           {/* Catégorie 2 : Jouets */}
           <CategoryCard title="Jouets" icon="🎾" bgColor="bg-purple-400" />
 
@@ -40,6 +141,10 @@ function App() {
 
       {/* Section Produits */}
       <ProductList />
+=======
+      {/* FOOTER ICI ↓ */}
+      <Footer />
+>>>>>>> b1757a9b3883f66e9628fcdec5b2c7e2570c321c
     </div>
   );
 }
