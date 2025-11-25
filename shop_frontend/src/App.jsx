@@ -1,7 +1,8 @@
 import React from "react";
-import Header from "./Componants/header";
-import HeroBanner from "./Componants/heroBanner";
-import CategoryCard from "./Componants/categoryCard"; // ← NOUVELLE LIGNE
+import Header from "./Components/header";
+import HeroBanner from "./Components/heroBanner";
+import CategoryCard from "./Components/categoryCard";
+import ProductList from "./Components/productList";
 
 function App() {
   return (
@@ -36,6 +37,9 @@ function App() {
           />
         </div>
       </div>
+
+      {/* Section Produits */}
+      <ProductList />
     </div>
   );
 }

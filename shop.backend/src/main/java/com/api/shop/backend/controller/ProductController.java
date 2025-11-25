@@ -8,9 +8,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/products") // This sets the base URL
-// Note: Your CorsConfig class likely handles CORS globally, so you might not
-// need @CrossOrigin here.
+@RequestMapping("/api/products")
+@CrossOrigin
 public class ProductController {
 
     private final ProductService productService;

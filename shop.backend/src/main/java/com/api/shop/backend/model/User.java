@@ -3,6 +3,9 @@ package com.api.shop.backend.model;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
 
+import lombok.Data;
+
+@Data
 @Entity
 @Table(name = "users")
 public class User {
