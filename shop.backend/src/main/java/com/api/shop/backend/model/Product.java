@@ -2,9 +2,11 @@ package com.api.shop.backend.model;
 
 import jakarta.persistence.*;
 import java.math.BigDecimal;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
 @Table(name = "product")
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,7 +26,8 @@ public class Product {
     @JoinColumn(name = "category_id")
     private Category category;
 
-    public Product() {}
+    public Product() {
+    }
 
     public Long getId() {
         return id;

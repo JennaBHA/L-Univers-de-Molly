@@ -1,22 +1,22 @@
 import React, { useState, useEffect } from "react";
-import Header from "./Components/header";
-import HeroBanner from "./Components/heroBanner";
-import CategoryCard from "./Components/categoryCard";
-import ProductCard from "./Components/productCard";
-import Footer from "./Components/footer";
+import Header from "./Components/layout/header";
+import HeroBanner from "./Components/layout/heroBanner";
+import CategoryCard from "./Components/cards/categoryCard";
+import ProductCard from "./Components/cards/productCard";
+import Footer from "./Components/layout/footer";
 import { getProducts } from "./services/api";
 
 function App() {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
   useEffect(() => {
     const loadProducts = async () => {
       try {
         setLoading(true);
         const data = await getProducts();
 
+        // Transformer les données de l'API
         const formattedProducts = data.map((product) => ({
           id: product.id,
           name: product.name,
@@ -41,39 +41,86 @@ function App() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div
+      className="min-h-screen"
+      style={{
+        background: "linear-gradient(135deg, #fef3f7 0%, #f0e6f3 100%)",
+      }}
+    >
+      {/* HEADER */}
       <Header />
+
+      {/* CARROUSEL HERO BANNER */}
       <HeroBanner />
 
-      <main className="max-w-7xl mx-auto px-4 py-12">
+      {/* CONTENU PRINCIPAL */}
+      <main className="max-w-7xl mx-auto px-6 py-16">
+        {/* ========================================
+            SECTION CATÉGORIES
+        ======================================== */}
         <section className="mb-16">
-          <h2 className="text-3xl font-bold mb-8">Achetez par catégorie</h2>
+          <div className="text-center mb-12">
+            <h2
+              className="text-4xl font-bold text-gray-800 mb-3"
+              style={{ fontFamily: "'Playfair Display', serif" }}
+            >
+              Explorez nos univers
+            </h2>
+            <p className="text-gray-600">
+              Tout ce dont votre animal a besoin, au même endroit
+            </p>
+          </div>
+
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             <CategoryCard
               title="Alimentation"
               icon="🍖"
-              bgColor="bg-purple-400"
+              bgColor="bg-gradient-to-br from-purple-400 to-pink-400"
             />
-            <CategoryCard title="Jouets" icon="🎾" bgColor="bg-purple-400" />
+            <CategoryCard
+              title="Jouets"
+              icon="🎾"
+              bgColor="bg-gradient-to-br from-pink-400 to-orange-400"
+            />
             <CategoryCard
               title="Accessoires"
               icon="🦴"
-              bgColor="bg-purple-400"
+              bgColor="bg-gradient-to-br from-purple-400 to-blue-400"
             />
             <CategoryCard
               title="Hygiène et soins"
               icon="🧴"
-              bgColor="bg-purple-400"
+              bgColor="bg-gradient-to-br from-pink-400 to-purple-400"
             />
           </div>
         </section>
 
+        {/* ========================================
+            SECTION PRODUITS
+        ======================================== */}
         <section>
-          <h2 className="text-3xl font-bold mb-8">Meilleures ventes</h2>
+          <div className="flex items-center justify-between mb-12">
+            <div>
+              <h2
+                className="text-4xl font-bold text-gray-800 mb-2"
+                style={{ fontFamily: "'Playfair Display', serif" }}
+              >
+                Les coups de cœur de Molly
+              </h2>
+              <p className="text-gray-600">
+                Sélection spéciale pour gâter vos compagnons
+              </p>
+            </div>
+            <button className="hidden md:block text-purple-600 font-medium hover:underline">
+              Voir tout →
+            </button>
+          </div>
 
+          {/* AFFICHAGE CONDITIONNEL */}
           {loading && (
             <div className="text-center py-12">
-              <p className="text-xl text-gray-600">
+              <div className="inline-block animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-purple-600"></div>
+              <p className="text-xl text-gray-600 mt-4">
                 Chargement des produits...
               </p>
             </div>
@@ -86,7 +133,7 @@ function App() {
           )}
 
           {!loading && !error && (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
               {products.map((product) => (
                 <ProductCard key={product.id} product={product} />
               ))}
@@ -95,6 +142,7 @@ function App() {
         </section>
       </main>
 
+      {/* FOOTER */}
       <Footer />
     </div>
   );

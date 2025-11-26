@@ -1,10 +1,10 @@
 package com.api.shop.backend.repository;
 
-import com.api.shop.backend.model.User;
+import com.api.shop.backend.model.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface UserRepository extends JpaRepository<User, Long> {
-    java.util.Optional<User> findByEmail(String email);
+public interface ProductRepository extends JpaRepository<Product, Long> {
+
 }
