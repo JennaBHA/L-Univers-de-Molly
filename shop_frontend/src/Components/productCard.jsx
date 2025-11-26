@@ -38,7 +38,7 @@ const ProductCard = ({ product }) => {
       <div className="relative">
         {/* Image du produit */}
         <img
-          src={product.image}
+          src={product.imageUrl}
           alt={product.name}
           className="w-full h-48 object-cover"
         />
