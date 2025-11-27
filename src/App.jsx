@@ -1,135 +1,50 @@
 import React from "react";
-import Header from "./Components/header";
-import HeroBanner from "./Components/heroBanner";
-import CategoryCard from "./Components/categoryCard";
-import ProductCard from "./Components/productCard";
-import Footer from "./Components/footer";
+import { Routes, Route } from "react-router-dom";
+import Header from "./Components/layout/header";
+import HeroBanner from "./Components/layout/heroBanner";
+import CategoryCard from "./Components/cards/categoryCard";
+import ProductList from "./Components/cards/productList";
+import Footer from "./Components/layout/footer";
+import Login from "./Components/UserAccess/login";
+import Register from "./Components/UserAccess/register";
 
-function App() {
-  // DONNÉES DE TEST - Produits fictifs
-  // const products = [
-  //   {
-  //     id: 1,
-  //     name: "Croquette Premium pour chiens - Poulet & Riz 15kg",
-  //     price: "39,99€",
-  //     rating: 5,
-  //     reviews: 2456,
-  //     image:
-  //       "https://images.unsplash.com/photo-1589924691995-400dc9ecc119?w=400",
-  //     isPremium: true,
-  //     discount: null,
-  //   },
-  //   {
-  //     id: 2,
-  //     name: "Croquette Premium pour chiens - Poulet & Riz 15kg",
-  //     price: "39,99€",
-  //     rating: 5,
-  //     reviews: 2456,
-  //     image:
-  //       "https://images.unsplash.com/photo-1591769225440-811ad7d6eab3?w=400",
-  //     isPremium: false,
-  //     discount: 24,
-  //   },
-  //   {
-  //     id: 3,
-  //     name: "Croquette Premium pour chiens - Poulet & Riz 15kg",
-  //     price: "39,99€",
-  //     rating: 4,
-  //     reviews: 2456,
-  //     image:
-  //       "https://images.unsplash.com/photo-1589924691995-400dc9ecc119?w=400",
-  //     isPremium: true,
-  //     discount: null,
-  //   },
-  //   {
-  //     id: 4,
-  //     name: "Croquette Premium pour chiens - Poulet & Riz 15kg",
-  //     price: "39,99€",
-  //     rating: 5,
-  //     reviews: 2456,
-  //     image:
-  //       "https://images.unsplash.com/photo-1591769225440-811ad7d6eab3?w=400",
-  //     isPremium: false,
-  //     discount: 24,
-  //   },
-  //   {
-  //     id: 5,
-  //     name: "Croquette Premium pour chiens - Poulet & Riz 15kg",
-  //     price: "39,99€",
-  //     rating: 5,
-  //     reviews: 2456,
-  //     image:
-  //       "https://images.unsplash.com/photo-1589924691995-400dc9ecc119?w=400",
-  //     isPremium: true,
-  //     discount: null,
-  //   },
-  //   {
-  //     id: 6,
-  //     name: "Croquette Premium pour chiens - Poulet & Riz 15kg",
-  //     price: "39,99€",
-  //     rating: 4,
-  //     reviews: 2456,
-  //     image:
-  //       "https://images.unsplash.com/photo-1591769225440-811ad7d6eab3?w=400",
-  //     isPremium: false,
-  //     discount: 24,
-  //   },
-  // ];
-
+function HomePage() {
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-pink-50 to-white">
       <Header />
       <HeroBanner />
-
-      <main className="max-w-7xl mx-auto px-4 py-12">
-        {/* SECTION CATÉGORIES */}
-        <section className="mb-16">
-          <h2 className="text-3xl font-bold mb-8">Achetez par catégorie</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            <CategoryCard
-              title="Alimentation"
-              icon="🍖"
-              bgColor="bg-purple-400"
-            />
-            <CategoryCard title="Jouets" icon="🎾" bgColor="bg-purple-400" />
-            <CategoryCard
-              title="Accessoires"
-              icon="🦴"
-              bgColor="bg-purple-400"
-            />
-            <CategoryCard
-              title="Hygiène et soins"
-              icon="🧴"
-              bgColor="bg-purple-400"
-            />
+      <main className="max-w-7xl mx-auto px-6 py-16">
+        <section className="bg-white/50 backdrop-blur-sm rounded-3xl p-8 shadow-xl">
+          {/* TITRE DE SECTION */}
+          <div className="text-center mb-12">
+            <h2 className="text-4xl font-bold bg-gradient-to-r from-purple-600 to-pink-500 bg-clip-text text-transparent mb-3">
+              Produits Populaires
+            </h2>
+            {/* <p className="text-gray-600 text-lg">
+              Nos meilleures ventes sélectionnées avec amour 💜
+            </p> */}
           </div>
+
+          {/* LISTE DES PRODUITS */}
+          <ProductList />
         </section>
-
-        {/* SECTION PRODUITS */}
-        {/* <section>
-          <h2 className="text-3xl font-bold mb-8">Meilleures ventes</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
-            {products.map((product) => (
-              <ProductCard key={product.id} product={product} />
-            ))}
-          </div>
-        </section> */}
       </main>
-
-      {/* Catégorie 2 : Jouets */}
-      <CategoryCard title="Jouets" icon="🎾" bgColor="bg-purple-400" />
-
-      {/* Catégorie 3 : Accessoires */}
-      <CategoryCard title="Accessoires" icon="🦴" bgColor="bg-purple-400" />
-
-      {/* Catégorie 4 : Hygiène */}
-      <CategoryCard
-        title="Hygiène et soins"
-        icon="🧴"
-        bgColor="bg-purple-400"
-      />
+      <Footer />
     </div>
   );
 }
 
-export default App;
+export default function App() {
+  return (
+    <Routes>
+      {/* PAGE D'ACCUEIL */}
+      <Route path="/" element={<HomePage />} />
+
+      {/* PAGE DE CONNEXION */}
+      <Route path="/login" element={<Login />} />
+
+      {/* PAGE D'INSCRIPTION */}
+      <Route path="/register" element={<Register />} />
+    </Routes>
+  );
+}
