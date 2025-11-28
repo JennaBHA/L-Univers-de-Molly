@@ -2,17 +2,36 @@
 // PAGE DE CONNEXION - L'UNIVERS DE MOLLY
 // ============================================
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { Mail, Lock, ArrowRight } from "lucide-react";
+import { useAuth } from "../../context/AuthContext";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
-  const handleSubmit = (e) => {
+  const { login } = useAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // ICI : logique de connexion (API)
-    console.log("Connexion avec :", { email, password });
+    setError("");
+    setIsLoading(true);
+
+    const result = await login(email, password);
+
+    if (result.success) {
+      // Redirect to dashboard if user is admin, or home otherwise
+      // Check if there was a saved location
+      const from = location.state?.from?.pathname || "/dashboard";
+      navigate(from, { replace: true });
+    } else {
+      setError(result.error || "Échec de la connexion");
+    }
+    setIsLoading(false);
   };
 
   return (
@@ -52,6 +71,11 @@ const Login = () => {
           ======================================== */}
           <div className="p-8">
             <form onSubmit={handleSubmit} className="space-y-6">
+              {error && (
+                <div className="bg-red-50 text-red-500 p-4 rounded-xl text-sm text-center">
+                  {error}
+                </div>
+              )}
               {/* CHAMP EMAIL */}
               <div>
                 <label className="block text-sm font-semibold text-gray-700 mb-2">
@@ -105,10 +129,11 @@ const Login = () => {
               {/* BOUTON CONNEXION */}
               <button
                 type="submit"
-                className="w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold py-4 rounded-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2"
+                disabled={isLoading}
+                className="w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold py-4 rounded-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                Se connecter
-                <ArrowRight size={20} />
+                {isLoading ? 'Connexion...' : 'Se connecter'}
+                {!isLoading && <ArrowRight size={20} />}
               </button>
             </form>
 

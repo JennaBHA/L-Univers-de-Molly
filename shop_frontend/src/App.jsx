@@ -8,6 +8,14 @@ import Footer from "./Components/layout/footer";
 import Login from "./Components/UserAccess/login";
 import Register from "./Components/UserAccess/register";
 
+import DashboardLayout from "./Components/layout/DashboardLayout";
+import DashboardHome from "./pages/dashboard/DashboardHome";
+import DashboardProducts from "./pages/dashboard/DashboardProducts";
+import DashboardOrders from "./pages/dashboard/DashboardOrders";
+
+import { AuthProvider } from "./context/AuthContext";
+import ProtectedRoute from "./Components/UserAccess/ProtectedRoute";
+
 function HomePage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-purple-50 via-pink-50 to-white">
@@ -36,15 +44,31 @@ function HomePage() {
 
 export default function App() {
   return (
-    <Routes>
-      {/* PAGE D'ACCUEIL */}
-      <Route path="/" element={<HomePage />} />
+    <AuthProvider>
+      <Routes>
+        {/* PAGE D'ACCUEIL */}
+        <Route path="/" element={<HomePage />} />
 
-      {/* PAGE DE CONNEXION */}
-      <Route path="/login" element={<Login />} />
+        {/* PAGE DE CONNEXION */}
+        <Route path="/login" element={<Login />} />
 
-      {/* PAGE D'INSCRIPTION */}
-      <Route path="/register" element={<Register />} />
-    </Routes>
+        {/* PAGE D'INSCRIPTION */}
+        <Route path="/register" element={<Register />} />
+
+        {/* DASHBOARD */}
+        <Route
+          path="/dashboard"
+          element={
+            <ProtectedRoute requiredRole="ADMIN">
+              <DashboardLayout />
+            </ProtectedRoute>
+          }
+        >
+          <Route index element={<DashboardHome />} />
+          <Route path="products" element={<DashboardProducts />} />
+          <Route path="orders" element={<DashboardOrders />} />
+        </Route>
+      </Routes>
+    </AuthProvider>
   );
 }
