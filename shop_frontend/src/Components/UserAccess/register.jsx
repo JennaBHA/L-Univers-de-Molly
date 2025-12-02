@@ -2,8 +2,9 @@
 // PAGE D'INSCRIPTION - L'UNIVERS DE MOLLY
 // ============================================
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { User, Mail, Phone, Lock, ArrowRight } from "lucide-react";
+import { useAuth } from "../../context/AuthContext";
 
 const Register = () => {
   const [formData, setFormData] = useState({
@@ -16,6 +17,11 @@ const Register = () => {
   });
 
   const [error, setError] = useState("");
+  const [success, setSuccess] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+
+  const { register } = useAuth();
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({
@@ -24,8 +30,10 @@ const Register = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    setError("");
+    setSuccess("");
 
     // Vérification des mots de passe
     if (formData.password !== formData.confirmPassword) {
@@ -33,9 +41,34 @@ const Register = () => {
       return;
     }
 
-    // ICI : logique d'inscription (API)
-    console.log("Inscription avec :", formData);
-    setError("");
+    // Validation du mot de passe (minimum 6 caractères)
+    if (formData.password.length < 6) {
+      setError("Le mot de passe doit contenir au moins 6 caractères !");
+      return;
+    }
+
+    setIsLoading(true);
+
+    // Appel API d'inscription
+    const result = await register(
+      formData.prenom,
+      formData.nom,
+      formData.email,
+      formData.telephone,
+      formData.password
+    );
+
+    setIsLoading(false);
+
+    if (result.success) {
+      setSuccess("Inscription réussie ! Redirection vers la connexion...");
+      // Redirection vers la page de connexion après 2 secondes
+      setTimeout(() => {
+        navigate("/login");
+      }, 2000);
+    } else {
+      setError(result.error || "Une erreur est survenue lors de l'inscription");
+    }
   };
 
   return (
@@ -220,13 +253,21 @@ const Register = () => {
                 </div>
               )}
 
+              {/* MESSAGE DE SUCCÈS */}
+              {success && (
+                <div className="bg-green-50 border-2 border-green-200 text-green-700 px-4 py-3 rounded-xl text-sm">
+                  {success}
+                </div>
+              )}
+
               {/* BOUTON INSCRIPTION */}
               <button
                 type="submit"
-                className="w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold py-4 rounded-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2"
+                disabled={isLoading}
+                className="w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold py-4 rounded-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
               >
-                Créer mon compte
-                <ArrowRight size={20} />
+                {isLoading ? 'Création en cours...' : 'Créer mon compte'}
+                {!isLoading && <ArrowRight size={20} />}
               </button>
             </form>
 
