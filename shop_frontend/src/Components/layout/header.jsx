@@ -77,12 +77,9 @@ const Header = () => {
               </a>
             </li>
             <li>
-              <a
-                href="#"
-                className="text-md font-medium text-gray-700 hover:text-purple-600 transition flex items-center gap-2"
-              >
+              <Link to="/jouets" className="...">
                 <span>🎾</span> Jouets
-              </a>
+              </Link>
             </li>
             <li>
               <a
