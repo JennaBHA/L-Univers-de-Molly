@@ -22,7 +22,11 @@ public class User {
     @Enumerated(EnumType.STRING)
     private Role role;
 
-    private String name;
+    private String firstName;
+
+    private String lastName;
+
+    private String phone;
 
     private LocalDateTime createdAt;
 

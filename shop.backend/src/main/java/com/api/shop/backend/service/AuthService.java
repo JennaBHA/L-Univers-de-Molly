@@ -53,8 +53,10 @@ public class AuthService {
 
         // Create new user's account
         User user = new User();
-        user.setName(signUpRequest.getName());
+        user.setFirstName(signUpRequest.getFirstName());
+        user.setLastName(signUpRequest.getLastName());
         user.setEmail(signUpRequest.getEmail());
+        user.setPhone(signUpRequest.getPhone());
         user.setPasswordHash(encoder.encode(signUpRequest.getPassword()));
         user.setRole(User.Role.CUSTOMER); // Default role
 

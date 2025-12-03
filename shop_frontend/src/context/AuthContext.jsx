@@ -54,8 +54,29 @@ export const AuthProvider = ({ children }) => {
         setUser(null);
     };
 
+    const register = async (firstName, lastName, email, phone, password) => {
+        try {
+            const response = await axios.post('http://localhost:8081/api/auth/signup', {
+                firstName,
+                lastName,
+                email,
+                phone,
+                password
+            });
+
+            // Registration successful
+            return { success: true };
+        } catch (error) {
+            console.error('Registration error:', error);
+            return {
+                success: false,
+                error: error.response?.data || 'Une erreur est survenue lors de l\'inscription'
+            };
+        }
+    };
+
     return (
-        <AuthContext.Provider value={{ user, login, logout, loading }}>
+        <AuthContext.Provider value={{ user, login, logout, register, loading }}>
             {!loading && children}
         </AuthContext.Provider>
     );

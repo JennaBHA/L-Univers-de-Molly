@@ -28,8 +28,10 @@ public class AuthControllerTest {
     @Test
     public void testSignupAndLogin() throws Exception {
         SignupRequest signupRequest = new SignupRequest();
-        signupRequest.setName("Test User");
+        signupRequest.setFirstName("Test");
+        signupRequest.setLastName("User");
         signupRequest.setEmail("test@example.com");
+        signupRequest.setPhone("0612345678");
         signupRequest.setPassword("password123");
 
         // Test Signup
