@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import { ArrowLeft } from "lucide-react";
 import Header from "../Components/layout/header";
 import Footer from "../Components/layout/footer";
-import FilterBar from "../Components/common/FilterBar";
 import ProductCard from "../Components/cards/productCard";
 import api from "../services/api";
 
@@ -11,6 +12,14 @@ const JouetsPage = () => {
   const [selectedFilter, setSelectedFilter] = useState("all");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+
+  const filters = [
+    { id: "all", label: "Tous" },
+    { id: "chien", label: "Chiens" },
+    { id: "chat", label: "Chats" },
+    { id: "rongeur", label: "Rongeurs" },
+    { id: "oiseau", label: "Oiseaux" },
+  ];
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -45,70 +54,112 @@ const JouetsPage = () => {
     }
   }, [selectedFilter, products]);
 
-  const handleFilterChange = (filterId) => {
-    setSelectedFilter(filterId);
-  };
-
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-pink-50 to-white">
+    <div className="min-h-screen bg-gray-50">
       <Header />
 
-      <section className="relative bg-gradient-to-r from-purple-500 to-pink-500 py-20 overflow-hidden">
-        <div className="absolute inset-0 opacity-20">
-          <div className="absolute top-0 left-0 w-96 h-96 bg-white rounded-full blur-3xl"></div>
-          <div className="absolute bottom-0 right-0 w-96 h-96 bg-pink-300 rounded-full blur-3xl"></div>
+      {/* HEADER DE PAGE */}
+      <div>
+        <div className="max-w-7xl mx-auto px-6 py-6">
+          <Link
+            to="/"
+            className="inline-flex items-center gap-2 text-gray-600 hover:text-purple-600 font-medium transition-colors mb-4"
+          >
+            <ArrowLeft size={18} />
+            Retour
+          </Link>
         </div>
+      </div>
 
-        <div className="relative max-w-7xl mx-auto px-6 text-center text-white">
-          <div className="inline-block mb-4">
-            <span className="text-8xl">🎾</span>
+      {/* CONTENU PRINCIPAL */}
+      <main className="max-w-7xl mx-auto px-6 py-8">
+        {/* FILTRES */}
+        <div className="bg-white rounded-lg p-5 shadow-sm border border-gray-200 mb-8">
+          <label className="block text-sm font-semibold text-gray-700 mb-3">
+            Type d'animal
+          </label>
+          <div className="flex flex-wrap gap-2">
+            {filters.map((filter) => (
+              <button
+                key={filter.id}
+                onClick={() => setSelectedFilter(filter.id)}
+                className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
+                  selectedFilter === filter.id
+                    ? "bg-purple-600 text-white"
+                    : "bg-gray-100 text-gray-700 hover:bg-gray-200"
+                }`}
+              >
+                {filter.label}
+              </button>
+            ))}
           </div>
-          <h1 className="text-5xl font-bold mb-4">Jouets pour Animaux</h1>
-          <p className="text-xl text-white/90 max-w-2xl mx-auto">
-            Découvrez notre collection de jouets interactifs pour le bonheur de
-            vos compagnons ! 🐾
-          </p>
-        </div>
-      </section>
-
-      <main className="max-w-7xl mx-auto px-6 py-16">
-        <FilterBar
-          selectedFilter={selectedFilter}
-          onFilterChange={handleFilterChange}
-        />
-
-        <div className="mb-6 text-center">
-          <p className="text-gray-600">
-            <span className="font-bold text-purple-600">
-              {filteredProducts.length}
-            </span>{" "}
-            {filteredProducts.length > 1 ? "jouets trouvés" : "jouet trouvé"}
-          </p>
         </div>
 
+        {/* BARRE DE RÉSULTATS */}
+        <div className="flex items-center justify-between mb-6">
+          <div>
+            <p className="text-gray-700">
+              <span className="font-bold text-purple-600">
+                {filteredProducts.length}
+              </span>{" "}
+              {filteredProducts.length > 1 ? "jouets" : "jouet"}
+            </p>
+
+            {/* FILTRE ACTIF */}
+            {selectedFilter !== "all" && (
+              <span className="inline-flex items-center gap-1.5 bg-purple-100 text-purple-700 px-3 py-1 rounded-md text-xs font-medium mt-2">
+                {filters.find((f) => f.id === selectedFilter)?.label}
+                <button
+                  onClick={() => setSelectedFilter("all")}
+                  className="hover:text-purple-900"
+                >
+                  ×
+                </button>
+              </span>
+            )}
+          </div>
+
+          {/* BOUTON RÉINITIALISER */}
+          {selectedFilter !== "all" && (
+            <button
+              onClick={() => setSelectedFilter("all")}
+              className="text-sm text-gray-600 hover:text-purple-600 font-medium"
+            >
+              Réinitialiser
+            </button>
+          )}
+        </div>
+
+        {/* GRILLE DE PRODUITS */}
         {loading ? (
           <div className="flex justify-center items-center h-64">
-            <div className="animate-spin rounded-full h-16 w-16 border-b-4 border-purple-600"></div>
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-purple-600"></div>
           </div>
         ) : error ? (
-          <div className="text-center text-red-500 py-8">
-            <p className="text-xl mb-4">😕 {error}</p>
+          <div className="text-center py-12 bg-white rounded-lg border border-gray-200">
+            <p className="text-red-500 mb-4">{error}</p>
             <button
               onClick={() => window.location.reload()}
-              className="bg-gradient-to-r from-purple-500 to-pink-500 text-white px-6 py-3 rounded-full hover:shadow-lg transition"
+              className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-2.5 rounded-lg font-medium transition-colors"
             >
               Réessayer
             </button>
           </div>
         ) : filteredProducts.length === 0 ? (
-          <div className="text-center py-16">
-            <span className="text-6xl mb-4 block">🔍</span>
-            <h3 className="text-2xl font-bold text-gray-800 mb-2">
+          <div className="text-center py-16 bg-white rounded-lg border border-gray-200">
+            <div className="text-6xl mb-4">🔍</div>
+            <h3 className="text-xl font-semibold text-gray-900 mb-2">
               Aucun jouet trouvé
             </h3>
-            <p className="text-gray-600">
-              Essayez un autre filtre ou revenez plus tard !
+            <p className="text-gray-600 mb-6">
+              Essayez de modifier vos filtres
             </p>
+            <button
+              onClick={() => setSelectedFilter("all")}
+              className="bg-purple-600 hover:bg-purple-700 text-white px-6 py-2.5 rounded-lg font-medium transition-colors"
+            >
+              Réinitialiser
+            </button>
           </div>
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">

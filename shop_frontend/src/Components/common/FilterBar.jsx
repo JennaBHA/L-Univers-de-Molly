@@ -2,19 +2,19 @@ import React from "react";
 
 const FilterBar = ({ selectedFilter, onFilterChange }) => {
   const filters = [
-    { id: "all", label: "Tous", emoji: "🌟" },
-    { id: "chien", label: "Chiens", emoji: "🐕" },
-    { id: "chat", label: "Chats", emoji: "🐱" },
-    { id: "rongeur", label: "Rongeurs", emoji: "🐹" },
-    { id: "oiseau", label: "Oiseaux", emoji: "🦜" },
-    { id: "poisson", label: "Poissons", emoji: "🐠" },
+    { id: "all", label: "Tous" },
+    { id: "chien", label: "Chiens" },
+    { id: "chat", label: "Chats" },
+    { id: "rongeur", label: "Rongeurs" },
+    { id: "oiseau", label: "Oiseaux" },
+    { id: "poisson", label: "Poissons" },
   ];
 
   return (
     <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-purple-100 mb-8">
       {/* TITRE */}
       <div className="flex items-center gap-3 mb-4">
-        <span className="text-2xl">🔍</span>
+        {/* <span className="text-2xl">🔍</span> */}
         <h3 className="text-lg font-bold text-gray-800">Filtrer par animal</h3>
       </div>
 

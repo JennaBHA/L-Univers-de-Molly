@@ -11,7 +11,10 @@ const HomePage = () => {
       <Header />
       <HeroBanner /> {/* ← TON CARROUSEL AVEC LES PHOTOS */}
       <main className="max-w-7xl mx-auto px-6 py-16">
-        <section className="bg-white/50 backdrop-blur-sm rounded-3xl p-8 shadow-xl">
+        <section
+          id="pro"
+          className="bg-white/50 backdrop-blur-sm rounded-3xl p-8 shadow-xl"
+        >
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold bg-gradient-to-r from-purple-600 to-pink-500 bg-clip-text text-transparent mb-3">
               Produits Populaires

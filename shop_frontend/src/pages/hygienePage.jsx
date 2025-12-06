@@ -6,7 +6,7 @@ import Footer from "../Components/layout/footer";
 import ProductCard from "../Components/cards/productCard";
 import api from "../services/api";
 
-const AccessoiresPage = () => {
+const HygienePage = () => {
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [selectedAnimal, setSelectedAnimal] = useState("all");
@@ -24,26 +24,29 @@ const AccessoiresPage = () => {
 
   const typeFilters = [
     { id: "all", label: "Tous types" },
-    { id: "collier", label: "Colliers" },
-    { id: "laisse", label: "Laisses" },
-    { id: "gamelle", label: "Gamelles" },
-    { id: "cage", label: "Cages & Transport" },
-    { id: "lit", label: "Lits & Coussins" },
+    { id: "shampoing", label: "Shampoings" },
+    { id: "brosse", label: "Brosses & Peignes" },
+    { id: "coupe", label: "Coupe-griffes" },
+    { id: "dentaire", label: "Soins dentaires" },
+    { id: "antiparasite", label: "Antiparasites" },
+    { id: "litiere", label: "Litières" },
   ];
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
         const response = await api.get("/products");
-        const accessoires = response.data.filter(
-          (product) => product.category?.toLowerCase() === "accessoires"
+        const hygiene = response.data.filter(
+          (product) =>
+            product.category?.toLowerCase() === "hygiene" ||
+            product.category?.toLowerCase() === "hygiène"
         );
-        setProducts(accessoires);
-        setFilteredProducts(accessoires);
+        setProducts(hygiene);
+        setFilteredProducts(hygiene);
         setLoading(false);
       } catch (err) {
         console.error("Erreur:", err);
-        setError("Impossible de charger les accessoires.");
+        setError("Impossible de charger les produits d'hygiène.");
         setLoading(false);
       }
     };
@@ -64,8 +67,8 @@ const AccessoiresPage = () => {
     if (selectedType !== "all") {
       filtered = filtered.filter(
         (product) =>
-          product.accessoryType &&
-          product.accessoryType.toLowerCase() === selectedType.toLowerCase()
+          product.hygieneType &&
+          product.hygieneType.toLowerCase() === selectedType.toLowerCase()
       );
     }
 
@@ -81,7 +84,7 @@ const AccessoiresPage = () => {
         <div className="max-w-7xl mx-auto px-6 py-6">
           <Link
             to="/"
-            className="inline-flex items-center gap-2 text-gray-600 hover:text-blue-600 font-medium transition-colors mb-4"
+            className="inline-flex items-center gap-2 text-gray-600 hover:text-pink-600 font-medium transition-colors mb-4"
           >
             <ArrowLeft size={18} />
             Retour
@@ -105,7 +108,7 @@ const AccessoiresPage = () => {
                   onClick={() => setSelectedAnimal(filter.id)}
                   className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
                     selectedAnimal === filter.id
-                      ? "bg-blue-600 text-white"
+                      ? "bg-pink-600 text-white"
                       : "bg-gray-100 text-gray-700 hover:bg-gray-200"
                   }`}
                 >
@@ -115,10 +118,10 @@ const AccessoiresPage = () => {
             </div>
           </div>
 
-          {/* FILTRE TYPE */}
+          {/* FILTRE TYPE DE PRODUIT */}
           <div className="bg-white rounded-lg p-5 shadow-sm border border-gray-200">
             <label className="block text-sm font-semibold text-gray-700 mb-3">
-              Type d'accessoire
+              Type de produit
             </label>
             <div className="flex flex-wrap gap-2">
               {typeFilters.map((filter) => (
@@ -127,7 +130,7 @@ const AccessoiresPage = () => {
                   onClick={() => setSelectedType(filter.id)}
                   className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors ${
                     selectedType === filter.id
-                      ? "bg-blue-600 text-white"
+                      ? "bg-pink-600 text-white"
                       : "bg-gray-100 text-gray-700 hover:bg-gray-200"
                   }`}
                 >
@@ -142,32 +145,32 @@ const AccessoiresPage = () => {
         <div className="flex items-center justify-between mb-6">
           <div>
             <p className="text-gray-700">
-              <span className="font-bold text-blue-600">
+              <span className="font-bold text-pink-600">
                 {filteredProducts.length}
               </span>{" "}
-              {filteredProducts.length > 1 ? "accessoires" : "accessoire"}
+              {filteredProducts.length > 1 ? "produits" : "produit"}
             </p>
 
             {/* FILTRES ACTIFS */}
             {(selectedAnimal !== "all" || selectedType !== "all") && (
               <div className="flex gap-2 mt-2">
                 {selectedAnimal !== "all" && (
-                  <span className="inline-flex items-center gap-1.5 bg-blue-100 text-blue-700 px-3 py-1 rounded-md text-xs font-medium">
+                  <span className="inline-flex items-center gap-1.5 bg-pink-100 text-pink-700 px-3 py-1 rounded-md text-xs font-medium">
                     {animalFilters.find((f) => f.id === selectedAnimal)?.label}
                     <button
                       onClick={() => setSelectedAnimal("all")}
-                      className="hover:text-blue-900"
+                      className="hover:text-pink-900"
                     >
                       ×
                     </button>
                   </span>
                 )}
                 {selectedType !== "all" && (
-                  <span className="inline-flex items-center gap-1.5 bg-blue-100 text-blue-700 px-3 py-1 rounded-md text-xs font-medium">
+                  <span className="inline-flex items-center gap-1.5 bg-pink-100 text-pink-700 px-3 py-1 rounded-md text-xs font-medium">
                     {typeFilters.find((f) => f.id === selectedType)?.label}
                     <button
                       onClick={() => setSelectedType("all")}
-                      className="hover:text-blue-900"
+                      className="hover:text-pink-900"
                     >
                       ×
                     </button>
@@ -184,7 +187,7 @@ const AccessoiresPage = () => {
                 setSelectedAnimal("all");
                 setSelectedType("all");
               }}
-              className="text-sm text-gray-600 hover:text-blue-600 font-medium"
+              className="text-sm text-gray-600 hover:text-pink-600 font-medium"
             >
               Réinitialiser les filtres
             </button>
@@ -194,14 +197,14 @@ const AccessoiresPage = () => {
         {/* GRILLE DE PRODUITS */}
         {loading ? (
           <div className="flex justify-center items-center h-64">
-            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-blue-600"></div>
+            <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-pink-600"></div>
           </div>
         ) : error ? (
           <div className="text-center py-12 bg-white rounded-lg border border-gray-200">
             <p className="text-red-500 mb-4">{error}</p>
             <button
               onClick={() => window.location.reload()}
-              className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2.5 rounded-lg font-medium transition-colors"
+              className="bg-pink-600 hover:bg-pink-700 text-white px-6 py-2.5 rounded-lg font-medium transition-colors"
             >
               Réessayer
             </button>
@@ -209,7 +212,7 @@ const AccessoiresPage = () => {
         ) : filteredProducts.length === 0 ? (
           <div className="text-center py-16 bg-white rounded-lg border border-gray-200">
             <h3 className="text-xl font-semibold text-gray-900 mb-2">
-              Aucun accessoire trouvé
+              Aucun produit d'hygiène trouvé
             </h3>
             <p className="text-gray-600 mb-6">
               Essayez de modifier vos filtres
@@ -219,7 +222,7 @@ const AccessoiresPage = () => {
                 setSelectedAnimal("all");
                 setSelectedType("all");
               }}
-              className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2.5 rounded-lg font-medium transition-colors"
+              className="bg-pink-600 hover:bg-pink-700 text-white px-6 py-2.5 rounded-lg font-medium transition-colors"
             >
               Réinitialiser
             </button>
@@ -238,4 +241,4 @@ const AccessoiresPage = () => {
   );
 };
 
-export default AccessoiresPage;
+export default HygienePage;

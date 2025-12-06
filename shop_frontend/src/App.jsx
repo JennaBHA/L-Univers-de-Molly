@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useRef } from "react"; //useRef sert a poser un Post-it pour retrouver mon lego sans devoir le reconstruire
 import { Routes, Route } from "react-router-dom";
 import Login from "./Components/UserAccess/login";
 import Register from "./Components/UserAccess/register";
@@ -10,25 +10,38 @@ import DashboardOrders from "./pages/dashboard/DashboardOrders";
 
 import { AuthProvider } from "./context/AuthContext";
 import ProtectedRoute from "./Components/UserAccess/ProtectedRoute";
+import AlimentationPage from "./pages/AlimentationPage";
+import HabitatPage from "./pages/habitatPage";
+import HygienePage from "./pages/hygienePage";
+import AccessoirePage from "./pages/accessoiresPage";
+import JouetsPage from "./pages/jouetPage";
+import FavorisPage from "./pages/favorisPage";
 
-// PAGES
-import JouetsPage from "./pages/jouetPage"; // ← AJOUTE ÇA
-
-// ========================================
-// PAGE D'ACCUEIL (avec carrousel)
-// ========================================
+// PAGE D'ACCUEIL - COMPOSANTS
 import Header from "./Components/layout/header";
 import HeroBanner from "./Components/layout/heroBanner";
 import ProductList from "./Components/cards/productList";
 import Footer from "./Components/layout/footer";
 
 function HomePage() {
-  // ← CHANGE "HomePages" en "HomePage"
+  // ✅ CRÉER LA RÉFÉRENCE
+  const produitsRef = useRef(null);
+
+  // ✅ FONCTION POUR SCROLLER
+  const scrollToProduits = () => {
+    produitsRef.current?.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-purple-50 via-pink-50 to-white">
+    // <div className="min-h-screen bg-gradient-to-br from-purple-50 via-pink-50 to-white">
+    <div className="min-h-screen bg-white">
       <Header />
-      <HeroBanner />
-      <main className="max-w-7xl mx-auto px-6 py-16">
+
+      {/* ✅ PASSE LA FONCTION AU HEROBANNER */}
+      <HeroBanner onScrollToProduits={scrollToProduits} />
+
+      {/* ✅ ATTACHE LA REF À MAIN */}
+      <main ref={produitsRef} className="max-w-7xl mx-auto px-6 py-16">
         <section className="bg-white/50 backdrop-blur-sm rounded-3xl p-8 shadow-xl">
           <div className="text-center mb-12">
             <h2 className="text-4xl font-bold bg-gradient-to-r from-purple-600 to-pink-500 bg-clip-text text-transparent mb-3">
@@ -38,6 +51,7 @@ function HomePage() {
           <ProductList />
         </section>
       </main>
+
       <Footer />
     </div>
   );
@@ -54,9 +68,13 @@ export default function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
 
-        {/* PAGE JOUETS */}
+        {/* PAGES CATÉGORIES */}
         <Route path="/jouets" element={<JouetsPage />} />
-
+        <Route path="/alimentation" element={<AlimentationPage />} />
+        <Route path="/accessoires" element={<AccessoirePage />} />
+        <Route path="/habitat" element={<HabitatPage />} />
+        <Route path="/hygiene" element={<HygienePage />} />
+        <Route path="/favoris" element={<FavorisPage />} />
         {/* DASHBOARD */}
         <Route
           path="/dashboard"
