@@ -24,10 +24,10 @@ import ProductList from "./Components/cards/productList";
 import Footer from "./Components/layout/footer";
 
 function HomePage() {
-  // ✅ CRÉER LA RÉFÉRENCE
+  // CRÉER LA RÉFÉRENCE
   const produitsRef = useRef(null);
 
-  // ✅ FONCTION POUR SCROLLER
+  // FONCTION POUR SCROLLER
   const scrollToProduits = () => {
     produitsRef.current?.scrollIntoView({ behavior: "smooth" });
   };
@@ -37,10 +37,10 @@ function HomePage() {
     <div className="min-h-screen bg-white">
       <Header />
 
-      {/* ✅ PASSE LA FONCTION AU HEROBANNER */}
+      {/* PASSE LA FONCTION AU HEROBANNER */}
       <HeroBanner onScrollToProduits={scrollToProduits} />
 
-      {/* ✅ ATTACHE LA REF À MAIN */}
+      {/* ATTACHE LA REF À MAIN */}
       <main ref={produitsRef} className="max-w-7xl mx-auto px-6 py-16">
         <section className="bg-white/50 backdrop-blur-sm rounded-3xl p-8 shadow-xl">
           <div className="text-center mb-12">
