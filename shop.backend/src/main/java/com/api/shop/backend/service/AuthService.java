@@ -40,10 +40,13 @@ public class AuthService {
         UserDetails userDetails = (UserDetails) authentication.getPrincipal();
         User user = userRepository.findByEmail(userDetails.getUsername()).orElseThrow();
 
+        // ✅ MODIFIÉ ICI - Ajout firstName et lastName
         return new JwtResponse(jwt,
                 user.getId(),
                 user.getEmail(),
-                user.getRole().name());
+                user.getRole().name(),
+                user.getFirstName(),   // ← AJOUTÉ
+                user.getLastName());   // ← AJOUTÉ
     }
 
     public void registerUser(SignupRequest signUpRequest) {

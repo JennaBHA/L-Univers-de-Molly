@@ -1,10 +1,8 @@
-// ============================================
-// PAGE DE CONNEXION - L'UNIVERS DE MOLLY
-// ============================================
 import React, { useState } from "react";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { Mail, Lock, ArrowRight } from "lucide-react";
 import { useAuth } from "../../context/AuthContext";
+import api from "../../services/api";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -21,17 +19,61 @@ const Login = () => {
     setError("");
     setIsLoading(true);
 
-    const result = await login(email, password);
+    try {
+      // Appel API de connexion
+      const response = await api.post("/auth/login", {
+        email,
+        password,
+      });
 
-    if (result.success) {
-      // Redirect to dashboard if user is admin, or home otherwise
-      // Check if there was a saved location
+      console.log("🔍 Réponse API complète:", response.data);
+
+      // Extraire les données de la réponse
+      const {
+        token,
+        id,
+        email: userEmail,
+        role,
+        firstName,
+        lastName,
+      } = response.data;
+
+      console.log("📝 Prénom reçu:", firstName);
+      console.log("📝 Nom reçu:", lastName);
+
+      // Créer l'objet utilisateur
+      const userData = {
+        id,
+        email: userEmail,
+        role,
+        firstName,
+        lastName,
+      };
+
+      // Connecter l'utilisateur avec AuthContext
+      login(userData, token);
+
+      // Redirection
       const from = location.state?.from?.pathname || "/dashboard";
       navigate(from, { replace: true });
-    } else {
-      setError(result.error || "Échec de la connexion");
+    } catch (error) {
+      console.error("❌ Erreur de connexion:", error);
+
+      if (error.response) {
+        // Erreur venant du serveur
+        setError(
+          error.response.data.message || "Email ou mot de passe incorrect"
+        );
+      } else if (error.request) {
+        // Pas de réponse du serveur
+        setError("Impossible de contacter le serveur");
+      } else {
+        // Autre erreur
+        setError("Une erreur s'est produite");
+      }
+    } finally {
+      setIsLoading(false);
     }
-    setIsLoading(false);
   };
 
   return (
@@ -132,7 +174,7 @@ const Login = () => {
                 disabled={isLoading}
                 className="w-full bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold py-4 rounded-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                {isLoading ? 'Connexion...' : 'Se connecter'}
+                {isLoading ? "Connexion..." : "Se connecter"}
                 {!isLoading && <ArrowRight size={20} />}
               </button>
             </form>

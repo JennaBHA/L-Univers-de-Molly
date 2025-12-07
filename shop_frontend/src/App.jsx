@@ -16,6 +16,7 @@ import HygienePage from "./pages/hygienePage";
 import AccessoirePage from "./pages/accessoiresPage";
 import JouetsPage from "./pages/jouetPage";
 import FavorisPage from "./pages/favorisPage";
+import PanierPage from "./pages/panierPage";
 
 // PAGE D'ACCUEIL - COMPOSANTS
 import Header from "./Components/layout/header";
@@ -75,6 +76,7 @@ export default function App() {
         <Route path="/habitat" element={<HabitatPage />} />
         <Route path="/hygiene" element={<HygienePage />} />
         <Route path="/favoris" element={<FavorisPage />} />
+        <Route path="/panier" element={<PanierPage />} />
         {/* DASHBOARD */}
         <Route
           path="/dashboard"
