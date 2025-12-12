@@ -1,4 +1,4 @@
-package org.example.Test;
+package org.example.Entities;
 
 public class Chat {
     private String nom;
