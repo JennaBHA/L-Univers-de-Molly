@@ -1,0 +1,18 @@
+ Volume in drive C has no label.
+ Volume Serial Number is 16AD-BEE6
+
+ Directory of c:\Users\TAO\Desktop\clone floder\L-Univers-de-Molly-main\shop.backend
+
+09/12/2025  18:24    <DIR>          .
+08/12/2025  19:21    <DIR>          ..
+08/12/2025  19:21                38 .gitattributes
+08/12/2025  19:21               394 .gitignore
+08/12/2025  19:21    <DIR>          .mvn
+08/12/2025  19:21            11,790 mvnw
+08/12/2025  19:21             8,481 mvnw.cmd
+09/12/2025  18:24                 0 output.txt
+08/12/2025  19:21             3,792 pom.xml
+08/12/2025  19:21    <DIR>          src
+09/12/2025  17:34    <DIR>          target
+               6 File(s)         24,495 bytes
+               5 Dir(s)  90,451,542,016 bytes free

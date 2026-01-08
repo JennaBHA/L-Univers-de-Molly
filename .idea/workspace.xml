@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="993f5f3b-c0e8-41e9-85f9-ddd8f9a743df" name="Changes" comment="Flyway database migration successfully setupped">
+      <change afterPath="$PROJECT_DIR$/shop.backend/src/main/java/com/api/shop/backend/config/CorsConfig.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/shop_frontend/src/services/api.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/shop_frontend/src/services/authServices.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/shop_frontend/src/services/orderService.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/shop_frontend/src/services/productService.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shop_frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/shop_frontend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/shop_frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/shop_frontend/package.json" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <excluded-from-favorite>
+      <branch-storage>
+        <map>
+          <entry type="LOCAL">
+            <value>
+              <list>
+                <branch-info repo="$PROJECT_DIR$" source="main" />
+              </list>
+            </value>
+          </entry>
+        </map>
+      </branch-storage>
+    </excluded-from-favorite>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Taoxicode&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/JennaBHA/L-Univers-de-Molly.git&quot;,
+    &quot;accountId&quot;: &quot;2c9ce941-3a1f-4fd1-82c1-b8d4d7181fa2&quot;
+  }
+}</component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
+  <component name="ProjectId" id="3541UoMk5vDM6exjCFuvg7OWytR" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Application.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.All in shop.backend.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.com.api.shop.backend in shop.backend.executor&quot;: &quot;Debug&quot;,
+    &quot;JUnit.com.api.shop.backend.model in shop.backend.executor&quot;: &quot;Run&quot;,
+    &quot;JUnit.com.api.shop.backend.repository in shop.backend.executor&quot;: &quot;Run&quot;,
+    &quot;ModuleVcsDetector.initialDetectionPerformed&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.TerminalTabsStorage.copyFrom.TerminalArrangementManager.252&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/TAO/IdeaProjects/L-Univers-de-Molly&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
+  }
+}</component>
+  <component name="RunManager" selected="Application.Application">
+    <configuration name="Application" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="com.api.shop.backend.Application" />
+      <module name="shop.backend" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.api.shop.backend.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="All in shop.backend" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="shop.backend" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="com.api.shop.backend in shop.backend" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="shop.backend" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.api.shop.backend.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.api.shop.backend" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="com.api.shop.backend.model in shop.backend" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="shop.backend" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.api.shop.backend.model.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.api.shop.backend.model" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="com.api.shop.backend.repository in shop.backend" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="shop.backend" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.api.shop.backend.repository.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.api.shop.backend.repository" />
+      <option name="TEST_OBJECT" value="package" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="JetRunConfigurationType">
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
+      <option name="filePath" />
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.Application" />
+        <item itemvalue="JUnit.com.api.shop.backend in shop.backend" />
+        <item itemvalue="JUnit.com.api.shop.backend.model in shop.backend" />
+        <item itemvalue="JUnit.com.api.shop.backend.repository in shop.backend" />
+        <item itemvalue="JUnit.All in shop.backend" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="993f5f3b-c0e8-41e9-85f9-ddd8f9a743df" name="Changes" comment="" />
+      <created>1762354547547</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1762354547547</updated>
+    </task>
+    <task id="LOCAL-00001" summary="Flyway database migration successfully setupped">
+      <option name="closed" value="true" />
+      <created>1762944502628</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1762944502628</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Flyway database migration successfully setupped">
+      <option name="closed" value="true" />
+      <created>1762953688864</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1762953688864</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
+    <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="OPEN_GENERIC_TABS">
+      <map>
+        <entry key="29e0ac4e-200c-46c9-a51f-71a5baf42b00" value="TOOL_WINDOW" />
+      </map>
+    </option>
+    <option name="TAB_STATES">
+      <map>
+        <entry key="29e0ac4e-200c-46c9-a51f-71a5baf42b00">
+          <value>
+            <State />
+          </value>
+        </entry>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="HEAD" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Flyway database migration successfully setupped" />
+    <option name="LAST_COMMIT_MESSAGE" value="Flyway database migration successfully setupped" />
+  </component>
+</project>
